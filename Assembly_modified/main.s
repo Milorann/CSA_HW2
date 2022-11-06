@@ -50,7 +50,7 @@ main:                       # основная программа
 	sub	rsp, 48             # подготовка стэка
 	
 	mov	DWORD PTR -36[rbp], edi     # загрузка argc на стэк
-	mov	r14, rsi     # загрузка argv на стэк
+	mov	r14, rsi                    # загрузка argv на стэк
 	
 	cmp	DWORD PTR -36[rbp], 3       # сравнение argc с 3
 	je	.L2                         # если равно, то пропускаем тело if
