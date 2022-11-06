@@ -29,16 +29,15 @@
   
     
 ### Программа на C ###
-Код находится в файле Task_in_C.c  
+Код находится в папке Code_in_C.  
   
 ### Оптимизированная программа на ассембелере с комментариями ### 
-Код на 5 находится в файле Task.s.  
-Код на 6 находится в файле Task_Registers.s.
+Код находится в папке Assembly_modified.  
    
 ### Программа на ассембелере от компилятора ### 
-Код находится в файле Task_from_C.s  
-Код получен путем компиляции Task_in_C.c следующим образом:  
-gcc -masm=intel -fno-asynchronous-unwind-tables -fno-jump-tables -fno-stack-protector -fno-exceptions ./Task_in_C.c -S -o ./Task_from_C.s
+Код находится в файле Assembly_from_C.  
+Код получен путем компиляции кода на C следующим образом:  
+gcc -masm=intel -fno-asynchronous-unwind-tables -fno-jump-tables -fno-stack-protector -fno-exceptions ./file_name.c -S -o ./file_name.s
   
 ### Информация, подтверждающая выполнение задания на 6 ###
   
