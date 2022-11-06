@@ -50,7 +50,7 @@ main:                       # основная программа
 	sub	rsp, 48             # подготовка стэка
 	
 	mov	DWORD PTR -36[rbp], edi     # загрузка argc на стэк
-	mov	QWORD PTR -48[rbp], rsi     # загрузка argv на стэк
+	mov	r14, rsi     # загрузка argv на стэк
 	
 	cmp	DWORD PTR -36[rbp], 3       # сравнение argc с 3
 	je	.L2                         # если равно, то пропускаем тело if
@@ -69,15 +69,16 @@ main:                       # основная программа
 	mov	eax, 0
 	call	__isoc99_scanf@PLT      # scanf("%d", &choice)
 	
-	cmp	DWORD PTR -28[rbp], 1       # сравнение choice с 1
+	mov r13d, DWORD PTR -28[rbp]    # загружаем choice в регистр r13d 
+	cmp	r13d, 1                     # сравнение choice с 1
 	jne	.L3                         # если не равно, то пропускаем тело if
-	mov	rax, QWORD PTR -48[rbp]     # argv[0]
+	mov	rax, r14     # argv[0]
 	add	rax, 8                      # смещаемся на argv[1]
 	mov	rdi, QWORD PTR [rax]        # аргумент для подпрограммы input
 	call	input@PLT               # input(argv[1])
 	
 .L3:
-	cmp	DWORD PTR -28[rbp], 2       # сравнение choice с 2
+	cmp	r13d, 2                     # сравнение choice с 2
 	jne	.L4                         # если не равно, то пропускаем тело if
 	lea	rdi, .LC3[rip]              # 1-й аргумент для функции printf
 	call	puts@PLT                # puts(.LC3) (printf(.LC3) с \n)
@@ -106,16 +107,16 @@ main:                       # основная программа
 	mov	edi, 0                      # аргумент для функции time
 	call	time@PLT                # time(NULL)
 	mov	QWORD PTR -16[rbp], rax     # time_t start = time(NULL) (rax)
-	mov	DWORD PTR -4[rbp], 0        # i = 0
+	mov	r12d, 0                     # i = 0
 	jmp	.L7                         
 	
 .L8:
 	mov	eax, 0
 	call	form_ans@PLT            # form_ans()
-	add	DWORD PTR -4[rbp], 1        # i++
+	add	r12d, 1                     # i++
 	
 .L7:
-	cmp	DWORD PTR -4[rbp], 2999999  # сравнение i с 3000000
+	cmp	r12d, 2999999               # сравнение i с 3000000
 	jle	.L8                         # если < 3000000, то выполняется тело
 	mov	edi, 0                      # аргумент для функции time
 	call	time@PLT                # time(NULL)
@@ -126,7 +127,7 @@ main:                       # основная программа
 	mov	eax, 0
 	call	printf@PLT              # printf(.LC5, end - start)
 	
-	mov	rax, QWORD PTR -48[rbp]     # argv[0]
+	mov	rax, r14     # argv[0]
 	add	rax, 16                     # смещаемся на argv[2]
 	mov	rdi, QWORD PTR [rax]        # аргумент для подпрограммы output
 	call	output@PLT              # output(argv[2])
