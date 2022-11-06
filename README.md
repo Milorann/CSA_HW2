@@ -40,7 +40,7 @@
 gcc -masm=intel -fno-asynchronous-unwind-tables -fno-jump-tables -fno-stack-protector -fno-exceptions ./file_name.c -S -o ./file_name.s
   
 ### Информация, подтверждающая выполнение задания на 8 ###
-  
+Приведен код на C на оценку 8.
 Добавлены комментарии.  
 Убраны лишние макросы, в том числе endbr64.  
 Удалены из конца кода строки ниже ret, а из начала информация о файле, из которой получили код на ассемблере.  
