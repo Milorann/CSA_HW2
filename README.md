@@ -39,7 +39,7 @@
 Код получен путем компиляции кода на C следующим образом:  
 gcc -masm=intel -fno-asynchronous-unwind-tables -fno-jump-tables -fno-stack-protector -fno-exceptions ./file_name.c -S -o ./file_name.s
   
-### Информация, подтверждающая выполнение задания на 6 ###
+### Информация, подтверждающая выполнение задания на 8 ###
   
 Добавлены комментарии.  
 Убраны лишние макросы, в том числе endbr64.  
