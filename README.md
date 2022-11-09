@@ -55,7 +55,8 @@ gcc -masm=intel -fno-asynchronous-unwind-tables -fno-jump-tables -fno-stack-prot
 <img width="204" alt="image" src="https://user-images.githubusercontent.com/57359954/200165522-b875b501-484c-48f3-afde-2f32024b0bb1.png">  
 <img width="205" alt="image" src="https://user-images.githubusercontent.com/57359954/200165560-70d15e6e-c221-4955-947d-85e72592cc69.png">  
 или  
-  
+<img width="229" alt="image" src="https://user-images.githubusercontent.com/57359954/200772055-505ef661-547a-4cee-b09e-61b2be62f3d8.png">  
+<img width="230" alt="image" src="https://user-images.githubusercontent.com/57359954/200772189-1ac31128-dd15-45fa-8642-7b107632555c.png">    
 Программа протестирована на приведенных тестах. Результаты совпадают с результатами программы на C.  
 В программе использованы функции ввода и формирования, вывода, получающие на вход n (число элементов в массивах).  
 Использованы локальные переменные n и i.  
