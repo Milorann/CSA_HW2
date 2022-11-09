@@ -136,105 +136,131 @@ generate:                       # подпрограмма генерации с
 form_ans:                       # подпрограмма формирования ответа
 	push	rbp                 #
 	mov	rbp, rsp                # подготовка стэка
-	mov	DWORD PTR -4[rbp], 0
-	mov	DWORD PTR -24[rbp], 0
-	mov	DWORD PTR -8[rbp], 1
-	mov	DWORD PTR -12[rbp], 0
-	mov	DWORD PTR -16[rbp], 0
-	jmp	.L8
+	
+	mov	DWORD PTR -4[rbp], 0        # start = 0
+	mov	DWORD PTR -24[rbp], 0       # end = 0
+	mov	DWORD PTR -8[rbp], 1        # flag = 1
+	mov	DWORD PTR -12[rbp], 0       # ind_ans = 0
+	mov	DWORD PTR -16[rbp], 0       # i = 0
+	jmp	.L8                         # прыжок на проверку условия i < 1000
+	
 .L20:
-	mov	eax, DWORD PTR -16[rbp]
-	lea	rdx, str[rip]
-	movzx	eax, BYTE PTR [rax+rdx]
-	cmp	al, 64
-	jle	.L9
-	mov	eax, DWORD PTR -16[rbp]
-	lea	rdx, str[rip]
-	movzx	eax, BYTE PTR [rax+rdx]
-	cmp	al, 90
-	jle	.L10
-	mov	eax, DWORD PTR -16[rbp]
-	lea	rdx, str[rip]
-	movzx	eax, BYTE PTR [rax+rdx]
-	cmp	al, 96
-	jle	.L9
+	mov	eax, DWORD PTR -16[rbp]     # берем i
+	lea	rdx, str[rip]               # получаем начало str
+	movzx	eax, BYTE PTR [rax+rdx] # str[i]
+	cmp	al, 64                      # сравнение str[i] с 65
+	jle	.L9                         # если < 65, то переходим в тело if
+	
+	mov	eax, DWORD PTR -16[rbp]     # берем i
+	lea	rdx, str[rip]               # получаем начало str
+	movzx	eax, BYTE PTR [rax+rdx] # str[i]
+	cmp	al, 90                      # сравнение str[i] с 90
+	jle	.L10                        # если <, то проверяем следующее условие
+	
+	mov	eax, DWORD PTR -16[rbp]     # берем i
+	lea	rdx, str[rip]               # получаем начало str
+	movzx	eax, BYTE PTR [rax+rdx] # str[i]
+	cmp	al, 96                      # сравнение str[i] с 97
+	jle	.L9                         # если < 97, то переходим в тело if
+	
 .L10:
-	mov	eax, DWORD PTR -16[rbp]
-	lea	rdx, str[rip]
-	movzx	eax, BYTE PTR [rax+rdx]
-	cmp	al, 122
-	jle	.L11
+	mov	eax, DWORD PTR -16[rbp]     # берем i
+	lea	rdx, str[rip]               # получаем начало str
+	movzx	eax, BYTE PTR [rax+rdx] # str[i]
+	cmp	al, 122                     # сравнение str[i] с 122
+	jle	.L11                        # если < 122, то заканчиваем шаг цикла
+	
 .L9:
-	mov	eax, DWORD PTR -16[rbp]
-	mov	DWORD PTR -24[rbp], eax
-	mov	eax, DWORD PTR -4[rbp]
-	cmp	eax, DWORD PTR -24[rbp]
-	jne	.L12
-	add	DWORD PTR -4[rbp], 1
-	jmp	.L11
+	mov	eax, DWORD PTR -16[rbp]     # i
+	mov	DWORD PTR -24[rbp], eax     # end = i
+	mov	eax, DWORD PTR -4[rbp]      #
+	cmp	eax, DWORD PTR -24[rbp]     # сравнение start с end
+	jne	.L12                        # если не равно, то пропускаем тело if
+	
+	add	DWORD PTR -4[rbp], 1        # start++
+	jmp	.L11                        # завершаем шаг цикла
+	
 .L12:
-	mov	eax, DWORD PTR -4[rbp]
-	mov	DWORD PTR -20[rbp], eax
-	jmp	.L13
+	mov	eax, DWORD PTR -4[rbp]      # start
+	mov	DWORD PTR -20[rbp], eax     # j = start
+	jmp	.L13                        # прыжок на проверку условия цикла
+	
 .L16:
-	mov	eax, DWORD PTR -20[rbp]
-	lea	rdx, str[rip]
-	movzx	edx, BYTE PTR [rax+rdx]
-	mov	ecx, DWORD PTR -4[rbp]
-	mov	eax, DWORD PTR -24[rbp]
-	add	eax, ecx
-	sub	eax, DWORD PTR -20[rbp]
-	sub	eax, 1
-	lea	rcx, str[rip]
-	movzx	eax, BYTE PTR [rax+rcx]
-	cmp	dl, al
-	je	.L14
-	mov	DWORD PTR -8[rbp], 0
-	jmp	.L15
+	mov	eax, DWORD PTR -20[rbp]     # j
+	lea	rdx, str[rip]               # начало str
+	movzx	edx, BYTE PTR [rax+rdx] # str[i]
+	mov	ecx, DWORD PTR -4[rbp]      # start
+	mov	eax, DWORD PTR -24[rbp]     # end
+	add	eax, ecx                    # start + end 
+	sub	eax, DWORD PTR -20[rbp]     # start + end - j
+	sub	eax, 1                      # start + end - j - 1
+	lea	rcx, str[rip]               # начало str
+	movzx	eax, BYTE PTR [rax+rcx] # str[start + end - j - 1]
+	
+	cmp	dl, al                      # str[j] c str[start + end - j - 1]
+	je	.L14                        # если ==, то заканчиваем шаг цикла
+	
+	mov	DWORD PTR -8[rbp], 0        # flag = 0
+	jmp	.L15                        # выход из цикла
+	
 .L14:
-	add	DWORD PTR -20[rbp], 1
+	add	DWORD PTR -20[rbp], 1       # j++
+	
 .L13:
-	mov	eax, DWORD PTR -24[rbp]
-	sub	eax, DWORD PTR -4[rbp]
+	mov	eax, DWORD PTR -24[rbp]     # end
+	sub	eax, DWORD PTR -4[rbp]      # end - start
+	mov	edx, eax                    # 
+	shr	edx, 31                     #
+	add	eax, edx                    #
+	sar	eax                         # (end - start) / 2
+	
 	mov	edx, eax
-	shr	edx, 31
-	add	eax, edx
-	sar	eax
-	mov	edx, eax
-	mov	eax, DWORD PTR -4[rbp]
-	add	eax, edx
-	cmp	DWORD PTR -20[rbp], eax
-	jl	.L16
+	mov	eax, DWORD PTR -4[rbp]      # start
+	add	eax, edx                    # start + (end - start) / 2
+	
+	cmp	DWORD PTR -20[rbp], eax     # j c start + (end - start) / 2
+	jl	.L16                        # если <, то выполняется тело цикла
+	
 .L15:
-	cmp	DWORD PTR -8[rbp], 1
-	jne	.L17
-	jmp	.L18
+	cmp	DWORD PTR -8[rbp], 1        # сравнение flag с 1
+	jne	.L17                        # если не равно, то пропускам тело if
+	jmp	.L18                        # переход в тело if
+	
 .L19:
-	mov	eax, DWORD PTR -4[rbp]
-	lea	rdx, str[rip]
-	movzx	edx, BYTE PTR [rax+rdx]
-	mov	eax, DWORD PTR -12[rbp]
-	lea	rcx, ans[rip]
-	mov	BYTE PTR [rax+rcx], dl
-	add	DWORD PTR -4[rbp], 1
-	add	DWORD PTR -12[rbp], 1
+	mov	eax, DWORD PTR -4[rbp]      # start
+	lea	rdx, str[rip]               # начало str
+	movzx	edx, BYTE PTR [rax+rdx] # str[start]
+	
+	mov	eax, DWORD PTR -12[rbp]     # ind_ans
+	lea	rcx, ans[rip]               # начало ans
+	mov	BYTE PTR [rax+rcx], dl      # ans[ind_ans]
+	
+	add	DWORD PTR -4[rbp], 1        # start++
+	add	DWORD PTR -12[rbp], 1       # ind_ans++
+	
 .L18:
-	mov	eax, DWORD PTR -4[rbp]
-	cmp	eax, DWORD PTR -24[rbp]
-	jl	.L19
-	mov	eax, DWORD PTR -12[rbp]
-	lea	rdx, ans[rip]
-	mov	BYTE PTR [rax+rdx], 32
-	add	DWORD PTR -12[rbp], 1
+	mov	eax, DWORD PTR -4[rbp]      # start
+	cmp	eax, DWORD PTR -24[rbp]     # сравнение start с end
+	jl	.L19                        # если <, переход в тело цикла
+	
+	mov	eax, DWORD PTR -12[rbp]     # ind_ans
+	lea	rdx, ans[rip]               # начало ans
+	mov	BYTE PTR [rax+rdx], 32      # ans[ind_ans] = ' '
+	
+	add	DWORD PTR -12[rbp], 1       # ind_ans++
+	
 .L17:
-	mov	DWORD PTR -8[rbp], 1
-	mov	eax, DWORD PTR -24[rbp]
-	add	eax, 1
-	mov	DWORD PTR -4[rbp], eax
+	mov	DWORD PTR -8[rbp], 1        # flag = 1
+	
+	mov	eax, DWORD PTR -24[rbp]     # end
+	add	eax, 1                      # end + 1
+	mov	DWORD PTR -4[rbp], eax      # start = end + 1
+	
 .L11:
-	add	DWORD PTR -16[rbp], 1
+	add	DWORD PTR -16[rbp], 1       # i++
+	
 .L8:
-	cmp	DWORD PTR -16[rbp], 999
-	jle	.L20
-	pop	rbp
-	ret
+	cmp	DWORD PTR -16[rbp], 999     # сравнение i с 1000
+	jle	.L20                        # если <, переход в тело цикла
+	pop	rbp                         #
+	ret                             # выход из подпрограммы
