@@ -64,6 +64,7 @@ gcc -masm=intel -fno-asynchronous-unwind-tables -fno-jump-tables -fno-stack-prot
 Программа протестирована на приведенных тестах. Результаты совпадают с результатами программы на C.  
 -4[rbp] заменен на регистр r12d в основной программе и в generate — это i. В form_ans заменен на r13d — это start.  
 -20[rbp] заменен на регистр r13d. В generate это n.  
+-24[rbp] заменен на регистр r15d в form_ans — end.
 -28[rbp] заменен на регистр r13d. В основной программе это choice.  
 -48[rbp] заменен на регистр r14. В основной программе это argv.  
 myfile[rip] заменен на регистр r12.  
