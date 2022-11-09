@@ -140,38 +140,38 @@ form_ans:                       # подпрограмма формирован�
 	mov	r13d, 0                     # start = 0
 	mov	r15d, 0                     # end = 0
 	mov	DWORD PTR -8[rbp], 1        # flag = 1
-	mov	DWORD PTR -12[rbp], 0       # ind_ans = 0
-	mov	DWORD PTR -16[rbp], 0       # i = 0
+	mov	r10d, 0                     # ind_ans = 0
+	mov	ebx, 0                      # i = 0
 	jmp	.L8                         # прыжок на проверку условия i < 1000
 	
 .L20:
-	mov	eax, DWORD PTR -16[rbp]     # берем i
+	mov	eax, ebx                    # берем i
 	lea	rdx, str[rip]               # получаем начало str
 	movzx	eax, BYTE PTR [rax+rdx] # str[i]
 	cmp	al, 64                      # сравнение str[i] с 65
 	jle	.L9                         # если < 65, то переходим в тело if
 	
-	mov	eax, DWORD PTR -16[rbp]     # берем i
+	mov	eax, ebx                    # берем i
 	lea	rdx, str[rip]               # получаем начало str
 	movzx	eax, BYTE PTR [rax+rdx] # str[i]
 	cmp	al, 90                      # сравнение str[i] с 90
 	jle	.L10                        # если <, то проверяем следующее условие
 	
-	mov	eax, DWORD PTR -16[rbp]     # берем i
+	mov	eax, ebx                    # берем i
 	lea	rdx, str[rip]               # получаем начало str
 	movzx	eax, BYTE PTR [rax+rdx] # str[i]
 	cmp	al, 96                      # сравнение str[i] с 97
 	jle	.L9                         # если < 97, то переходим в тело if
 	
 .L10:
-	mov	eax, DWORD PTR -16[rbp]     # берем i
+	mov	eax, ebx                    # берем i
 	lea	rdx, str[rip]               # получаем начало str
 	movzx	eax, BYTE PTR [rax+rdx] # str[i]
 	cmp	al, 122                     # сравнение str[i] с 122
 	jle	.L11                        # если < 122, то заканчиваем шаг цикла
 	
 .L9:
-	mov	eax, DWORD PTR -16[rbp]     # i
+	mov	eax, ebx                    # i
 	mov	r15d, eax                   # end = i
 	mov	eax, r13d                   #
 	cmp	eax, r15d                   # сравнение start с end
@@ -231,23 +231,23 @@ form_ans:                       # подпрограмма формирован�
 	lea	rdx, str[rip]               # начало str
 	movzx	edx, BYTE PTR [rax+rdx] # str[start]
 	
-	mov	eax, DWORD PTR -12[rbp]     # ind_ans
+	mov	eax, r10d                   # ind_ans
 	lea	rcx, ans[rip]               # начало ans
 	mov	BYTE PTR [rax+rcx], dl      # ans[ind_ans]
 	
 	add	r13d, 1                     # start++
-	add	DWORD PTR -12[rbp], 1       # ind_ans++
+	add	r10d, 1                     # ind_ans++
 	
 .L18:
 	mov	eax, r13d                   # start
 	cmp	eax, r15d                   # сравнение start с end
 	jl	.L19                        # если <, переход в тело цикла
 	
-	mov	eax, DWORD PTR -12[rbp]     # ind_ans
+	mov	eax, r10d                   # ind_ans
 	lea	rdx, ans[rip]               # начало ans
 	mov	BYTE PTR [rax+rdx], 32      # ans[ind_ans] = ' '
 	
-	add	DWORD PTR -12[rbp], 1       # ind_ans++
+	add	r10d, 1                     # ind_ans++
 	
 .L17:
 	mov	DWORD PTR -8[rbp], 1        # flag = 1
@@ -257,10 +257,10 @@ form_ans:                       # подпрограмма формирован�
 	mov	r13d, eax                   # start = end + 1
 	
 .L11:
-	add	DWORD PTR -16[rbp], 1       # i++
+	add	ebx, 1                      # i++
 	
 .L8:
-	cmp	DWORD PTR -16[rbp], 999     # сравнение i с 1000
+	cmp	ebx, 999                    # сравнение i с 1000
 	jle	.L20                        # если <, переход в тело цикла
 	pop	rbp                         #
 	ret                             # выход из подпрограммы
