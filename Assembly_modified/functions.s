@@ -10,37 +10,34 @@
 	.text
 	.globl	input
 	.type	input, @function
-input:
-	push	rbp
-	mov	rbp, rsp
-	sub	rsp, 16
-	mov	QWORD PTR -8[rbp], rdi
-	mov	rax, QWORD PTR -8[rbp]
-	lea	rdx, .LC0[rip]
-	mov	rsi, rdx
-	mov	rdi, rax
-	call	fopen@PLT
-	mov	QWORD PTR myfile[rip], rax
-	mov	rax, QWORD PTR myfile[rip]
-	test	rax, rax
-	jne	.L2
-	lea	rax, .LC1[rip]
-	mov	rdi, rax
-	call	puts@PLT
-	mov	edi, 1
-	call	exit@PLT
+input:                          # подпрограмма считывания строки из файла
+	push	rbp                 # 
+	mov	rbp, rsp                # 
+	sub	rsp, 16                 # подготовка стэка
+	
+	mov	QWORD PTR -8[rbp], rdi  # загрузка на стэк параметра const char *inp
+	mov	rdi, QWORD PTR -8[rbp]  # 1-й аргумент для функции fopen (inp)
+	lea	rsi, .LC0[rip]          # 2-й аргумент для функции fopen
+	call	fopen@PLT           # fopen(inp, "r")
+	mov	r12, rax                # myfile = fopen(inp, "r")
+	
+	test	rax, rax                # проверка myfile == NULL
+	jne	.L2                         # если не равно, то пропускаем тело if
+	lea	rdi, .LC1[rip]              # 1-й аргумент для функции printf
+	call	puts@PLT                # puts(.LC1) (printf(.LC1) с \n)
+	mov	edi, 1                      # аргумент для функции exit
+	call	exit@PLT                # exit(1) - завершение программы
+	
 .L2:
-	mov	rax, QWORD PTR myfile[rip]
-	mov	rdx, rax
-	mov	esi, 1000
-	lea	rax, str[rip]
-	mov	rdi, rax
-	call	fgets@PLT
-	mov	rax, QWORD PTR myfile[rip]
-	mov	rdi, rax
-	call	fclose@PLT
-	leave
-	ret
+	mov	rdx, r12                    # 3-й аргумент для функции fgets (myfile)
+	mov	esi, 1000                   # 2-й аргумент для функции fopen
+	lea	rdi, str[rip]               # 1-й аргумент для функции fopen (str)
+	call	fgets@PLT               # fgets(str, 1000, myfile)
+	
+	mov	rdi, r12                    # 1-й аргумент для функции fclose
+	call	fclose@PLT              # fclose(myfile)
+	leave                           #
+	ret                             # завершение подпрограммы
 	.size	input, .-input
 	
 	.section	.rodata
@@ -50,31 +47,29 @@ input:
 	.text
 	.globl	output
 	.type	output, @function
-output:
-	push	rbp
-	mov	rbp, rsp
-	sub	rsp, 16
-	mov	QWORD PTR -8[rbp], rdi
-	mov	rax, QWORD PTR -8[rbp]
-	lea	rdx, .LC2[rip]
-	mov	rsi, rdx
-	mov	rdi, rax
-	call	fopen@PLT
-	mov	QWORD PTR myfile[rip], rax
-	mov	rax, QWORD PTR myfile[rip]
-	mov	rsi, rax
-	lea	rax, ans[rip]
-	mov	rdi, rax
-	call	fputs@PLT
-	mov	rax, QWORD PTR myfile[rip]
-	mov	rsi, rax
-	mov	edi, 10
-	call	fputc@PLT
-	mov	rax, QWORD PTR myfile[rip]
-	mov	rdi, rax
-	call	fclose@PLT
-	leave
-	ret
+output:                         # подпрограмма вывода ответа в файл
+	push	rbp                 #
+	mov	rbp, rsp                #
+	sub	rsp, 16                 # подготовка стэка
+	
+	mov	QWORD PTR -8[rbp], rdi  # загрузка на стэк параметра const char *outp
+	mov	rdi, QWORD PTR -8[rbp]  # 1-й аргумент для функции fopen (outp)
+	lea	rsi, .LC2[rip]          # 2-й аргумент для функции fopen
+	call	fopen@PLT           # fopen(outp, "w")
+	mov	r12, rax                # myfile = fopen(outp, "w")
+	
+	mov	rsi, rax                # 2-й аргумент для функции fputs (myfile)
+	lea	rdi, ans[rip]           # 1-й аргумент для функции fputs (ans)
+	call	fputs@PLT           # fputs(ans, myfile)
+	
+	mov	rsi, r12                # 2-й аргумент для функции fputs (myfile)
+	mov	edi, 10                 # 1-й аргумент для функции fputs ('\n')
+	call	fputc@PLT           # fputc('\n', myfile) (fputs("\n", myfile))
+	
+	mov	rdi, r12                # 1-й аргумент для функции fclose
+	call	fclose@PLT          # fclose(myfile)
+	leave                       #
+	ret                         # завершение подпрограммы
 	.size	output, .-output
 	
 	.section	.rodata
@@ -84,11 +79,11 @@ output:
 	.text
 	.globl	generate
 	.type	generate, @function
-generate:
-	push	rbp
-	mov	rbp, rsp
-	sub	rsp, 32
-	mov	DWORD PTR -20[rbp], edi
+generate:                       # подпрограмма генерации строки для обработки
+	push	rbp                 #
+	mov	rbp, rsp                #
+	sub	rsp, 32                 # подготовка стэка
+	mov	DWORD PTR -20[rbp], edi     # загрузка на стэк параметра int n
 	mov	edi, 0
 	call	time@PLT
 	mov	edi, eax
@@ -133,9 +128,9 @@ generate:
 	
 	.globl	form_ans
 	.type	form_ans, @function
-form_ans:
-	push	rbp
-	mov	rbp, rsp
+form_ans:                       # подпрограмма формирования ответа
+	push	rbp                 #
+	mov	rbp, rsp                # подготовка стэка
 	mov	DWORD PTR -4[rbp], 0
 	mov	DWORD PTR -24[rbp], 0
 	mov	DWORD PTR -8[rbp], 1
@@ -238,4 +233,3 @@ form_ans:
 	jle	.L20
 	pop	rbp
 	ret
-
