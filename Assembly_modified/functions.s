@@ -137,8 +137,8 @@ form_ans:                       # подпрограмма формирован�
 	push	rbp                 #
 	mov	rbp, rsp                # подготовка стэка
 	
-	mov	DWORD PTR -4[rbp], 0        # start = 0
-	mov	DWORD PTR -24[rbp], 0       # end = 0
+	mov	r13d, 0                     # start = 0
+	mov	r15d, 0                     # end = 0
 	mov	DWORD PTR -8[rbp], 1        # flag = 1
 	mov	DWORD PTR -12[rbp], 0       # ind_ans = 0
 	mov	DWORD PTR -16[rbp], 0       # i = 0
@@ -172,16 +172,16 @@ form_ans:                       # подпрограмма формирован�
 	
 .L9:
 	mov	eax, DWORD PTR -16[rbp]     # i
-	mov	DWORD PTR -24[rbp], eax     # end = i
-	mov	eax, DWORD PTR -4[rbp]      #
-	cmp	eax, DWORD PTR -24[rbp]     # сравнение start с end
+	mov	r15d, eax                   # end = i
+	mov	eax, r13d                   #
+	cmp	eax, r15d                   # сравнение start с end
 	jne	.L12                        # если не равно, то пропускаем тело if
 	
-	add	DWORD PTR -4[rbp], 1        # start++
+	add	r13d, 1                     # start++
 	jmp	.L11                        # завершаем шаг цикла
 	
 .L12:
-	mov	eax, DWORD PTR -4[rbp]      # start
+	mov	eax, r13d                   # start
 	mov	DWORD PTR -20[rbp], eax     # j = start
 	jmp	.L13                        # прыжок на проверку условия цикла
 	
@@ -189,8 +189,8 @@ form_ans:                       # подпрограмма формирован�
 	mov	eax, DWORD PTR -20[rbp]     # j
 	lea	rdx, str[rip]               # начало str
 	movzx	edx, BYTE PTR [rax+rdx] # str[i]
-	mov	ecx, DWORD PTR -4[rbp]      # start
-	mov	eax, DWORD PTR -24[rbp]     # end
+	mov	ecx, r13d                   # start
+	mov	eax, r15d                   # end
 	add	eax, ecx                    # start + end 
 	sub	eax, DWORD PTR -20[rbp]     # start + end - j
 	sub	eax, 1                      # start + end - j - 1
@@ -207,15 +207,15 @@ form_ans:                       # подпрограмма формирован�
 	add	DWORD PTR -20[rbp], 1       # j++
 	
 .L13:
-	mov	eax, DWORD PTR -24[rbp]     # end
-	sub	eax, DWORD PTR -4[rbp]      # end - start
+	mov	eax, r15d                   # end
+	sub	eax, r13d                   # end - start
 	mov	edx, eax                    # 
 	shr	edx, 31                     #
 	add	eax, edx                    #
 	sar	eax                         # (end - start) / 2
 	
 	mov	edx, eax
-	mov	eax, DWORD PTR -4[rbp]      # start
+	mov	eax, r13d                   # start
 	add	eax, edx                    # start + (end - start) / 2
 	
 	cmp	DWORD PTR -20[rbp], eax     # j c start + (end - start) / 2
@@ -227,7 +227,7 @@ form_ans:                       # подпрограмма формирован�
 	jmp	.L18                        # переход в тело if
 	
 .L19:
-	mov	eax, DWORD PTR -4[rbp]      # start
+	mov	eax, r13d                   # start
 	lea	rdx, str[rip]               # начало str
 	movzx	edx, BYTE PTR [rax+rdx] # str[start]
 	
@@ -235,12 +235,12 @@ form_ans:                       # подпрограмма формирован�
 	lea	rcx, ans[rip]               # начало ans
 	mov	BYTE PTR [rax+rcx], dl      # ans[ind_ans]
 	
-	add	DWORD PTR -4[rbp], 1        # start++
+	add	r13d, 1                     # start++
 	add	DWORD PTR -12[rbp], 1       # ind_ans++
 	
 .L18:
-	mov	eax, DWORD PTR -4[rbp]      # start
-	cmp	eax, DWORD PTR -24[rbp]     # сравнение start с end
+	mov	eax, r13d                   # start
+	cmp	eax, r15d                   # сравнение start с end
 	jl	.L19                        # если <, переход в тело цикла
 	
 	mov	eax, DWORD PTR -12[rbp]     # ind_ans
@@ -252,9 +252,9 @@ form_ans:                       # подпрограмма формирован�
 .L17:
 	mov	DWORD PTR -8[rbp], 1        # flag = 1
 	
-	mov	eax, DWORD PTR -24[rbp]     # end
+	mov	eax, r15d                   # end
 	add	eax, 1                      # end + 1
-	mov	DWORD PTR -4[rbp], eax      # start = end + 1
+	mov	r13d, eax                   # start = end + 1
 	
 .L11:
 	add	DWORD PTR -16[rbp], 1       # i++
