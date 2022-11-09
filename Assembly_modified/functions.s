@@ -182,17 +182,17 @@ form_ans:                       # подпрограмма формирован�
 	
 .L12:
 	mov	eax, r13d                   # start
-	mov	DWORD PTR -20[rbp], eax     # j = start
+	mov	r11d, eax                   # j = start
 	jmp	.L13                        # прыжок на проверку условия цикла
 	
 .L16:
-	mov	eax, DWORD PTR -20[rbp]     # j
+	mov	eax, r11d                   # j
 	lea	rdx, str[rip]               # начало str
 	movzx	edx, BYTE PTR [rax+rdx] # str[i]
 	mov	ecx, r13d                   # start
 	mov	eax, r15d                   # end
 	add	eax, ecx                    # start + end 
-	sub	eax, DWORD PTR -20[rbp]     # start + end - j
+	sub	eax, r11d                   # start + end - j
 	sub	eax, 1                      # start + end - j - 1
 	lea	rcx, str[rip]               # начало str
 	movzx	eax, BYTE PTR [rax+rcx] # str[start + end - j - 1]
@@ -204,7 +204,7 @@ form_ans:                       # подпрограмма формирован�
 	jmp	.L15                        # выход из цикла
 	
 .L14:
-	add	DWORD PTR -20[rbp], 1       # j++
+	add	r11d, 1                     # j++
 	
 .L13:
 	mov	eax, r15d                   # end
@@ -218,7 +218,7 @@ form_ans:                       # подпрограмма формирован�
 	mov	eax, r13d                   # start
 	add	eax, edx                    # start + (end - start) / 2
 	
-	cmp	DWORD PTR -20[rbp], eax     # j c start + (end - start) / 2
+	cmp	r11d, eax                   # j c start + (end - start) / 2
 	jl	.L16                        # если <, то выполняется тело цикла
 	
 .L15:
