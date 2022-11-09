@@ -83,47 +83,52 @@ generate:                       # подпрограмма генерации с
 	push	rbp                 #
 	mov	rbp, rsp                #
 	sub	rsp, 32                 # подготовка стэка
-	mov	DWORD PTR -20[rbp], edi     # загрузка на стэк параметра int n
-	mov	edi, 0
-	call	time@PLT
-	mov	edi, eax
-	call	srand@PLT
-	mov	DWORD PTR -4[rbp], 0
-	jmp	.L5
+	
+	mov	r13d, edi                   # загрузка в регистр параметра int n
+	mov	edi, 0                      # аргумент для функции time
+	call	time@PLT                # time(NULL)
+	mov	edi, eax                    # аргумент для функции srand
+	call	srand@PLT               # srand(time(NULL))
+	
+	mov	r12d, 0                     # i = 0
+	jmp	.L5                         # прыжок на проверку условия i < n
+	
 .L6:
-	call	rand@PLT
-	movsx	rdx, eax
-	imul	rdx, rdx, -1401515643
-	shr	rdx, 32
-	add	edx, eax
-	sar	edx, 6
-	mov	ecx, eax
-	sar	ecx, 31
-	sub	edx, ecx
-	imul	ecx, edx, 95
-	sub	eax, ecx
-	mov	edx, eax
-	mov	eax, edx
-	add	eax, 32
-	mov	ecx, eax
-	mov	eax, DWORD PTR -4[rbp]
-	lea	rdx, str[rip]
-	mov	BYTE PTR [rax+rdx], cl
-	add	DWORD PTR -4[rbp], 1
+	call	rand@PLT                # rand()
+	movsx	rdx, eax                # переносим полученное значение 
+	
+	imul	rdx, rdx, -1401515643   # 
+	shr	rdx, 32                     # 
+	add	edx, eax                    # 
+	sar	edx, 6                      # 
+	mov	ecx, eax                    # 
+	sar	ecx, 31                     # 
+	sub	edx, ecx                    # 
+	imul	ecx, edx, 95            # 
+	sub	eax, ecx                    # вычисление rand() % 95
+	
+	add	eax, 32                     # 32 + rand() % 95
+	mov	ecx, eax                    # 
+	
+	mov	eax, r12d                   # берем i
+	lea	rdx, str[rip]               # получаем начало str
+	mov	BYTE PTR [rax+rdx], cl      # str[i] = 32 + rand() % 95
+	
+	add	r12d, 1                     # i++
+	
 .L5:
-	mov	eax, DWORD PTR -4[rbp]
-	cmp	eax, DWORD PTR -20[rbp]
-	jl	.L6
-	lea	rax, str[rip]
-	mov	rsi, rax
-	lea	rax, .LC3[rip]
-	mov	rdi, rax
+	cmp	r12d, r13d                  # сравнение i с n
+	jl	.L6                         # если i <, то выполняется тело цикла
+	
+	lea	rsi, str[rip]               # 2-й аргумент для функции printf (str)
+	lea	rdi, .LC3[rip]              # 1-й аргумент для функции printf
 	mov	eax, 0
-	call	printf@PLT
-	mov	edi, 10
-	call	putchar@PLT
-	leave
-	ret
+	call	printf@PLT              # printf(.LC3, str)
+	
+	mov	edi, 10                     # 1-й аргумент для функции printf ('\n')
+	call	putchar@PLT             # putchar('\n') (printf('\n'))
+	leave                           #
+	ret                             # выход из подпрограммы
 	.size	generate, .-generate
 	
 	.globl	form_ans
