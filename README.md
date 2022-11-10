@@ -53,7 +53,15 @@ t3cT<2ynqe/6%{Xt7Y3XU$'R~}C2rX/dko9%=4qnv!"xzXn22~kd I4~DW/4-;xv+3{'Dmu8lx1gQ|y'
 
 ##### Результат (одинаковый во всех программах) #####
 t Y R C I y c C R n h a m v H c J J d Q Z Y v O O  
-    
+
+#### 8 тест ####
+Пользователь выбирает ввод из файла. Файл Tests/test8.txt. Строка из 1001 символа.   
+J,W$>N]0JR$9Ed)A.'=X8NLvR>IsmP45]k6{8s)bG.xio"+=''TxU!o(<6x*g-?BvS>/GGnkRhUCg]?HdsA7t.<1E38*=TL4(g@M/09_ul#]JB$-3BA(Q[6snKz, G>&/^S;nizdVz@":D,MfMR5)e)t1$"/H@5T=emkOeM'aj&{/2Gs\y&c'0Xn1Z}Ww0,tuy]F`+M?vP8#b_s<Zz 8(Y'61#m*3z{*qYPOdznXK(\+dMG?HHTP"\d3_R:rJ6y=oJiRBY+m^dx@3A][f2*eknuH>19iD3'2[md}Gol#UbDh!"Ag1HJ}4AFSR\=spA&L/jGTX1T+tuprt2X'X#"lDH@s&Zhs{k=)Wd]-v/8h&)[z;1~s5!^YG~KJW1>S|[YQ@4^4Dv|J VB9gB*|ChTge|2=.Pm()HZG\9[!1VH.*kGq+RlK;>4};F;Ft*N}R)B,@{.NRS\\?%KGT5slS(kkN'/C.[?]aaj"]uP-I.ff00.dE"Nv':_S?osMH3,*rs-Pi][0hBvuR#Wu"'l*>L]]9Q)ab2iU&v#lQ^|8"t.QtcGvj4!)^^dt.mTp >F&2Ioc)l{(^(YSk"KS3L\n)Ad4,6%,TK/fq~GwiA HFWy2VBbin<Vt[8)gN+t V!cF}+>gI?-ov'"JFa43~g(Z /BK:4Kn6/518Sxao#Rc(Q.N4@a3(jj&v-Q1?}|R*/cB'Y"P\T2d&=47]uGc]2iQ=8'\3]/>mo]NI_{&1.k8L|L'otgN$Q|Ag]zz<'6'vtU@QNDcZ-x$*E+y7sE<B@Z*}V#:]9>U.pr]@4AzA:~H\'Ctwe.;&hB"?E9z_XMjI=HfRf^s!Z=[b]PW@[rDD6FaX_\85*!\DFCv. k/W&j7c8o$sbE6ukwOITd^[b8 *Yt8Y'D1f0IGE9H7xnMlZE<!v}]OauLkOA$&~H8bU^*xtS0mB]Zy#sxvrVFQLr=y2> 1c5t:s{3hOCTn}/f}!_tp38B\+\V:zTI^i>x^7)DgIuS1u  
+
+##### Результат (одинаковый во всех программах) #####
+J W N A X k s o x g t E g M Q G S D e t H T y c Z F M b s Y m z d R y m A f L T X X s k v h z s S J F N R B C I ff S l L Q v t F l L n t V g Z Q N a jj v Q R Y P T d k L L Q zz x E y B Z V U AzA H E z s Z b k W j c o b Y D f H v H y c t s f B V i x  
+(символ за тысячей не был обработан)  
+
 ### Программа на C ###
 Код находится в папке Code_in_C.  
   
