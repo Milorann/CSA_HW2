@@ -49,7 +49,7 @@ u L u
 
 #### 7 тест ####
 Пользователь выбирает генерацию строки из 345 символов.  
-t3cT<2ynqe/6%{Xt7Y3XU$`R~}C2rX/dko9%~4qnv!"xzXn22~kd I4~DW/4-;xv+3{'Dmu8lx1gQ|y`{bBx-TxN)(c7C\.Kl'R.rFF_?XDmR;KL~jE)?>WIC8]fuh/bo_n_&5<Bj`0>|Xjx@-~`LS'oldTbMcB:@1zFD7h,uuGoN2eo=dMi8TV"6+dcl%}-3uQW+:a!1)m\9PIV5v@JHvJ^ /Bi1>sE4Ey<'[:nb(H{XrRjfo30c]nci/J{J?>[d5xBn3.Q<WJqJ|Z1lm>PH+227\+axF=[Y3zEG*v`^>O&;*4%tSR=[aMr<UT5|nmS#ixGpl(O+WRFbfHW:wruZ@evu  
+t3cT<2ynqe/6%{Xt7Y3XU$'R~}C2rX/dko9%~4qnv!"xzXn22~kd I4~DW/4-;xv+3{'Dmu8lx1gQ|y'{bBx-TxN)(c7C\.Kl'R.rFF_?XDmR;KL~jE)?>WIC8]fuh/bo_n_&5<Bj`0>|Xjx@-~`LS'oldTbMcB:@1zFD7h,uuGoN2eo=dMi8TV"6+dcl%}-3uQW+:a!1)m\9PIV5v@JHvJ^ /Bi1>sE4Ey<'[:nb(H{XrRjfo30c]nci/J{J?>[d5xBn3.Q<WJqJ|Z1lm>PH+227\+axF=[Y3zEG*v'^>O&;*4%tSR=[aMr<UT5|nmS#ixGpl(O+WRFbfHW:wruZ@evu  
 
 ##### Результат (одинаковый во всех программах) #####
 t Y R C I y c C R n h a m v H c J J d Q Z Y v O O  
