@@ -27,28 +27,28 @@ Cannot open file.
 Wrong length. Termination of the program.  
 
 #### 4 тест ####
-Пользователь выбирает ввод из файла.  
+Пользователь выбирает ввод из файла. Файл Tests/test4.txt.    
 SDS sdk nvn a 2  
 
 ##### Результат (одинаковый во всех программах) #####
 SDS nvn a  
 
 #### 5 тест ####
-Пользователь выбирает генерацию строки из 1000 символов.  
+Пользователь выбирает генерацию строки из 1000 символов. Сгенерированная строка также добавлена в файл Tests/test5.txt и проверена с использованием ввода из файла.    
 ;C,rbo+,/xHv/2A}zcWSq6c>=eZI*(YEKc9+SA7_7\SFntAiVu:H)=g(a?NkG&/oiEw:c,vzhG>X<\?rRZ9XV}a8:-!_00LyRE16Q%.8LImi&*YUao/8mmM&zOe,\2#0T2C'7O<dx*K 1%Usra,'OZfH'IQc\Qp1c55xaN]ZX&Zj+.[}og\=?@bFj4(DexRG+e@l4zHm! U)+1%xua63=xVf*^+oX[4'ATKUOp@PprZy!_rw>&(={^"&>*rse(Q$Y|Z*mwW\k2VinF^-LfHEFJHaT;U;@$?z"v"ooYLXi BXF"foe/5,V]j+v@C4Bc,DW.1De[|O[=( <ko"w#,N]vZT5}fW^r{7=-XdeS1Bp6B*#/,z25Gm-"BB|&vYyrpu|FWcyh#g~Bq~N{z^1?L;An];rQtiDb_?*7 $|#l{B[{pWsOf3{"Qh]l[/_EQB"mL6mN3m;/0s(}LxN0)G2Z0lEhy%+KG-9qC'@VqXc"Lh|ubK&ks6D! ijykrE0!["A_?xQtYP??N2=v6kjL-iLsQD_DioECog#,]U"4#>SQPSIf<10IzZ=L~yqei4&Vx*cV\bg_}</KlX0)f@Obwi,sczWJ-]~&dbZABB=@[.kHc{NJ:}*/d4!E/Xp<3o@xOz7n:6/vDw?(qkP,fZ8Lk9q{nb5#OUx{M0jhGv_ho{nad?jLv xc:j\)Kn)wB"to0\UTT2=A,) pHj==g6}"=W)GF/?e21S?n)sC91dE;d3'LQz4dx4cM:(tIHWXY+wH2khKzJm3,!pUOlg5b{u.6= _DW6}'.Drw*;oU)#^'p5WZ|l;u_I)[Ie !{~a+@Q Jlo|ro\z'nR9h<T^x}dUDJUBGQ"OqSO:><71,p,i_[#EwT!qOeDs1y7XI9%8iTR(mg:vXC`6 a[t6]cfC(WQ k*I",^l]2tKy,BOP!eMb?Bu|'Y=,2o)}vO!$/jaA\+8iMg7NKd.j'%d+^"5pn>lcnjgzUF92QQx|60K^tWIy\+"  
 
 ##### Результат (одинаковый во всех программах) #####
 C A c H g a c X a Q T C O K c e l U Q Y Z k U z v V j v C O w N r B z BB g N z L l B l m s G Z D A N v U L f d E o n q M j A g W e S n d b u p l u I a Q z h T x p i y a t k I l Y o j d K    
 
 #### 6 тест ####
-Пользователь выбирает генерацию строки из 10 символов.  
+Пользователь выбирает генерацию строки из 10 символов. Сгенерированная строка также добавлена в файл Tests/test6.txt и проверена с использованием ввода из файла.  
 .u)kC`L8u_  
 
 ##### Результат (одинаковый во всех программах) #####
 u L u  
 
 #### 7 тест ####
-Пользователь выбирает генерацию строки из 345 символов.  
+Пользователь выбирает генерацию строки из 345 символов. Сгенерированная строка также добавлена в файл Tests/test7.txt и проверена с использованием ввода из файла.  
 t3cT<2ynqe/6%{Xt7Y3XU$'R~}C2rX/dko9%=4qnv!"xzXn22~kd I4~DW/4-;xv+3{'Dmu8lx1gQ|y'{bBx-TxN)(c7C\.Kl'R.rFF_?XDmR;KL=jE)?>WIC8]fuh/bo_n_&5<Bj'0>|Xjx@-='LS'oldTbMcB:@1zFD7h,uuGoN2eo=dMi8TV"6+dcl%}-3uQW+:a!1)m\9PIV5v@JHvJ^ /Bi1>sE4Ey<'[:nb(H{XrRjfo30c]nci/J{J?>[d5xBn3.Q<WJqJ|Z1lm>PH+227\+axF=[Y3zEG*v'^>O&;*4%tSR=[aMr<UT5|nmS#ixGpl(O+WRFbfHW:wruZ@evu  
 
 ##### Результат (одинаковый во всех программах) #####
